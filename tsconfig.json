@@ -8,5 +8,5 @@
     "strict": true,
     "outDir": "dist"
   },
-  "include": ["api/**/*", "src/**/*"]
+  "include": ["api/**/*", "src/**/*", ".vercel/api/index.ts"]
 }
