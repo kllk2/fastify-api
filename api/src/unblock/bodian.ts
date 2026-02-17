@@ -1,5 +1,4 @@
 import { SongUrlResult } from "./unblock";
-import { serverLog } from "../../main/logger";
 import { createHash } from "crypto";
 import axios from "axios";
 
@@ -81,7 +80,6 @@ const search = async (info: string): Promise<string | null> => {
     if (list[0] && !list[0]?.id) return null;
     return list[0].id;
   } catch (error) {
-    serverLog.error("❌ Get BodianSongId Error:", error);
     return null;
   }
 };
@@ -114,7 +112,6 @@ const sendAdFreeRequest = () => {
     });
     return axios.post(adurl, data, { headers });
   } catch (error) {
-    serverLog.error("❌ Get Bodian Ad Free Error:", error);
     return null;
   }
 };
@@ -155,7 +152,6 @@ const getBodianSongUrl = async (keyword: string): Promise<SongUrlResult> => {
     }
     return { code: 404, url: null };
   } catch (error) {
-    serverLog.error("❌ Get BodianSong URL Error:", error);
     return { code: 404, url: null };
   }
 };
