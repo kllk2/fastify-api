@@ -144,8 +144,8 @@ const getBodianSongUrl = async (keyword: string): Promise<SongUrlResult> => {
     audioUrl = generateSign(audioUrl);
     // 获取广告
     await sendAdFreeRequest();
-    console.log("kllk 获取歌曲地址 的 链接：", audioUrl)
     // 获取歌曲地址
+    console.log("kllk 获取歌曲地址 的 链接：", audioUrl)
     const result = await axios.get(audioUrl, { headers });
     console.log("kllk 获取歌曲地址 的 结果：", result)
     if (typeof result.data === "object") {
