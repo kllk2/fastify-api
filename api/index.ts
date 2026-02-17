@@ -7,8 +7,9 @@ const app = fastify({ logger: true });
 try {
   // 注册 CORS
   await app.register(cors, {
-    origin: ['https://s-player4.vercel.app', 'http://localhost:5173'],
+    origin: ['https://s-player4.vercel.app', 'http://localhost:5173','http://localhost:14558'],
     methods: ['GET', 'POST'],
+    credentials: true
   });
 
   // 注册路由，加上 /api 前缀（必须 await）
