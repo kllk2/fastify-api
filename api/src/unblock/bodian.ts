@@ -147,7 +147,6 @@ const getBodianSongUrl = async (keyword: string): Promise<SongUrlResult> => {
     console.log("kllk 获取歌曲地址 的 结果：", result)
     if (typeof result.data === "object") {
       const urlMatch = result.data.data.audioUrl;
-      serverLog.log("🔗 BodianSong URL:", urlMatch);
       return { code: 200, url: urlMatch };
     }
     return { code: 404, url: null };
