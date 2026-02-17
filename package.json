@@ -1,0 +1,19 @@
+{
+  "name": "fastify-api",
+  "version": "1.0.0",
+  "type": "module",          // 如果使用 ES modules
+  "scripts": {
+    "dev": "tsx api/index.ts",   // 可选，用于本地测试
+    "build": "tsc"               // 可选，但 Vercel 会自动编译
+  },
+  "dependencies": {
+    "fastify": "^4.28.0",
+    "@fastify/cors": "^8.5.0",   // 如果需要处理 CORS
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"              // 可选，用于本地运行
+  }
+}
