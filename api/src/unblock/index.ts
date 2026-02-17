@@ -87,5 +87,4 @@ export const initUnblockAPI = async (fastify: FastifyInstance) => {
     },
   );
 
-  serverLog.info("🌐 Register UnblockAPI successfully");
 };
