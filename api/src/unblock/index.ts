@@ -1,6 +1,5 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import { SongUrlResult } from "./unblock";
-import { serverLog } from "../../main/logger";
 import axios from "axios";
 import getKuwoSongUrl from "./kuwo";
 import getBodianSongUrl from "./bodian";
@@ -19,10 +18,8 @@ const getNeteaseSongUrl = async (id: number | string): Promise<SongUrlResult> =>
       params: { types: "url", id },
     });
     const songUrl = result.data.url;
-    serverLog.log("🔗 NeteaseSongUrl URL:", songUrl);
     return { code: 200, url: songUrl };
   } catch (error) {
-    serverLog.error("❌ Get NeteaseSongUrl Error:", error);
     return { code: 404, url: null };
   }
 };
