@@ -1,6 +1,5 @@
 import { encryptQuery } from "./kwDES";
 import { SongUrlResult } from "./unblock";
-import { serverLog } from "../../main/logger";
 import axios from "axios";
 
 // 获取酷我音乐歌曲 ID
@@ -26,7 +25,6 @@ const getKuwoSongId = async (keyword: string): Promise<string | null> => {
     if (songName && !songName?.includes(originalName[0])) return null;
     return songId.slice("MUSIC_".length);
   } catch (error) {
-    serverLog.error("❌ Get KuwoSongId Error:", error);
     return null;
   }
 };
@@ -53,12 +51,10 @@ const getKuwoSongUrl = async (keyword: string): Promise<SongUrlResult> => {
     });
     if (result.data) {
       const urlMatch = result.data.match(/http[^\s$"]+/)[0];
-      serverLog.log("🔗 KuwoSong URL:", urlMatch);
       return { code: 200, url: urlMatch };
     }
     return { code: 404, url: null };
   } catch (error) {
-    serverLog.error("❌ Get KuwoSong URL Error:", error);
     return { code: 404, url: null };
   }
 };
