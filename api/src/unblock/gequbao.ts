@@ -1,5 +1,4 @@
 import { SongUrlResult } from "./unblock";
-import { serverLog } from "../../main/logger";
 import axios from "axios";
 import { randomBytes } from "crypto";
 
@@ -23,7 +22,6 @@ const search = async (keyword: string): Promise<string | null> => {
     }
     return null;
   } catch (error) {
-    serverLog.error("❌ Get GequbaoSongId Error:", error);
     return null;
   }
 };
@@ -46,7 +44,6 @@ const getPlayId = async (id: string): Promise<string | null> => {
     }
     return null;
   } catch (error) {
-    serverLog.error("❌ Get GequbaoPlayId Error:", error);
     return null;
   }
 };
@@ -93,13 +90,11 @@ const getGequbaoSongUrl = async (keyword: string): Promise<SongUrlResult> => {
     const { data } = await axios.post(url, body, { headers });
 
     if (data.code === 1 && data.data && data.data.url) {
-      serverLog.log("🔗 GequbaoSong URL:", data.data.url);
       return { code: 200, url: data.data.url };
     }
 
     return { code: 404, url: null };
   } catch (error) {
-    serverLog.error("❌ Get GequbaoSong URL Error:", error);
     return { code: 404, url: null };
   }
 };
