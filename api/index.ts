@@ -6,7 +6,7 @@ const app = fastify({ logger: true });
 
 // 注册 CORS（允许前端域名访问）
 await app.register(cors, {
-  origin: ['https://你的前端域名.vercel.app', 'http://localhost:5173'], // 根据实际情况修改
+  origin: ['https://s-player4.vercel.app', 'http://localhost:5173'], // 根据实际情况修改
   methods: ['GET', 'POST'],
 });
 
