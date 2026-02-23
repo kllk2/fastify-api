@@ -1,9 +1,9 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 import { SongUrlResult } from "./unblock";
 import axios from "axios";
-import getKuwoSongUrl from "./kuwo";
-import getBodianSongUrl from "./bodian";
-import getGequbaoSongUrl from "./gequbao";
+import getKuwoSongUrl from "./kuwo.js";
+import getBodianSongUrl from "./bodian.js";
+import getGequbaoSongUrl from "./gequbao.js";
 
 /**
  * 直接获取 网易云云盘 链接
