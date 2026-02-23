@@ -1,4 +1,4 @@
-import { encryptQuery } from "./kwDES";
+import { encryptQuery } from "./kwDES.js";
 import { SongUrlResult } from "./unblock";
 import axios from "axios";
 
