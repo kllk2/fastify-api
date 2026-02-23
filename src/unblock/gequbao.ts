@@ -53,7 +53,7 @@ const getPlayId = async (id: string): Promise<string | null> => {
  * @param keyword 搜索关键词
  * @returns 包含歌曲 URL 的结果对象
  */
-const getGequbaoSongUrl = async (keyword: string): Promise<SongUrlResult> => {
+const getGequbaoSongUrl = async (keyword: string, clientIp?: string): Promise<SongUrlResult> => {
   try {
     if (!keyword) return { code: 404, url: null };
 
@@ -67,7 +67,7 @@ const getGequbaoSongUrl = async (keyword: string): Promise<SongUrlResult> => {
 
     // 3. 获取播放链接
     const url = "https://www.gequbao.com/api/play-url";
-    const headers = {
+    const headers : Record<string, string>= {
       accept: "application/json, text/javascript, */*; q=0.01",
       "accept-language": "zh-CN,zh;q=0.9",
       "cache-control": "no-cache",
@@ -84,6 +84,11 @@ const getGequbaoSongUrl = async (keyword: string): Promise<SongUrlResult> => {
       cookie: `server_name_session=${randomBytes(16).toString("hex")}`,
       Referer: `https://www.gequbao.com/music/${id}`,
     };
+
+    // 如果传入了 clientIp，添加 X-Real-IP 头
+    if (clientIp) {
+      headers['X-Real-IP'] = clientIp;
+    }
 
     const body = `id=${encodeURIComponent(playId)}`;
 

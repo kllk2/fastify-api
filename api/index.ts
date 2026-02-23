@@ -2,7 +2,10 @@ import fastify from 'fastify';
 import cors from '@fastify/cors';
 import { initUnblockAPI } from '../src/unblock/index.js';
 
-const app = fastify({ logger: true });
+const app = fastify({
+  logger: true,
+  trustProxy: true,  // 必须开启，否则 req.ip 可能是代理 IP
+});
 
 try {
   // 注册 CORS

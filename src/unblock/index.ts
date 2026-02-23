@@ -69,7 +69,11 @@ export const initUnblockAPI = async (fastify: FastifyInstance) => {
     ) => {
       console.log("kllk fastify.get /unblock/bodian 被调用")
       const { keyword } = req.query;
-      const result = await getBodianSongUrl(keyword);
+      // 获取客户端真实 IP（需要 trustProxy: true）
+      const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      // 传递 clientIp 给函数
+      const result = await getBodianSongUrl(keyword, clientIp as string);
+      // const result = await getBodianSongUrl(keyword);
       console.log("kllk fastify.get /unblock/bodian 结果:", result)
       return reply.send(result);
     },
@@ -82,7 +86,10 @@ export const initUnblockAPI = async (fastify: FastifyInstance) => {
       reply: FastifyReply,
     ) => {
       const { keyword } = req.query;
-      const result = await getGequbaoSongUrl(keyword);
+      // 获取客户端真实 IP（需要 trustProxy: true）
+      const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      // 传递 clientIp 给函数
+      const result = await getGequbaoSongUrl(keyword, clientIp as string);
       return reply.send(result);
     },
   );

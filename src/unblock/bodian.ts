@@ -121,13 +121,16 @@ const sendAdFreeRequest = () => {
  * @param keyword 搜索关键词
  * @returns 包含歌曲 URL 的结果对象
  */
-const getBodianSongUrl = async (keyword: string): Promise<SongUrlResult> => {
+const getBodianSongUrl = async (
+  keyword: string, 
+  clientIp?: string // 新增可选参数，用于传递客户端真实 IP
+): Promise<SongUrlResult> => {
   try {
     if (!keyword) return { code: 404, url: null };
     const songId = await search(keyword);
     if (!songId) return { code: 404, url: null };
     // 请求地址
-    const headers = {
+    const headers : Record<string, string> = {
       "user-agent": "Dart/2.19 (dart:io)",
       plat: "ar",
       channel: "aliopen",
@@ -136,6 +139,12 @@ const getBodianSongUrl = async (keyword: string): Promise<SongUrlResult> => {
       host: "bd-api.kuwo.cn",
       "X-Forwarded-For": "1.0.1.114",
     };
+
+     // 如果传入了 clientIp，添加 X-Real-IP 头
+    if (clientIp) {
+      headers['X-Real-IP'] = clientIp;
+    }
+
     let audioUrl = `http://bd-api.kuwo.cn/api/play/music/v2/audioUrl?&br=${"320kmp3"}&musicId=${songId}`;
     // 生成签名
     audioUrl = generateSign(audioUrl);
