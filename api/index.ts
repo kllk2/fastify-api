@@ -1,6 +1,6 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
-import { initUnblockAPI } from '../src/unblock';
+import { initUnblockAPI } from '../src/unblock/index';
 
 const app = fastify({ logger: true });
 
